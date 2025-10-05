@@ -1,3 +1,7 @@
+locals {
+  public_key = tls_private_key.ssh_key.public_key_openssh
+}
+
 resource "proxmox_lxc" "lxcs" {
   for_each = { for lxc in var.lxcs : lxc.hostname => lxc }
 
@@ -42,4 +46,6 @@ resource "proxmox_lxc" "lxcs" {
   features {
     nesting = true
   }
+
+  ssh_public_keys = local.public_key
 }
