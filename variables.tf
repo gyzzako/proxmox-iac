@@ -17,7 +17,7 @@ variable "ostemplate" {
 }
 
 variable "root_password" {
-  type = string
+  type      = string
   sensitive = true
 }
 
